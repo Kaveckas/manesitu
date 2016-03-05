@@ -6,6 +6,8 @@ export default class App extends React.Component {
      * @returns {JSX}
      */
     render() {
-        return <h1>Hello world!</h1>;
+        return (
+            <div>{this.props.children}</div>
+        );
     }
 }

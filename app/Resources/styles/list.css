@@ -8,6 +8,36 @@
     background: #f6f6f6;
 }
 
-.post-list-item:nth-child(odd) {
+.post-list-item:nth-child(even) {
     background: #ccc;
+}
+
+.post-content {
+    margin: 0;
+}
+
+.post-list-item {
+    padding: 15px;
+}
+
+.list-item-info {
+    margin-bottom: 10px;
+}
+
+.post-author {
+    font-size: 17px;
+}
+
+.post-icon {
+    position: relative;
+    top: 4px;
+    margin-right: 7px;
+}
+
+.post-created {
+    margin-right: 17px;
+}
+
+.post-icon svg {
+    width: 20px;
 }

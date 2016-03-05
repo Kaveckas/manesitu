@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Comment;
+
 /**
  * CommentRepository
  *
@@ -10,4 +12,40 @@ namespace AppBundle\Repository;
  */
 class CommentRepository extends \Doctrine\ORM\EntityRepository
 {
+    const COUNT_PER_PAGE = 10;
+
+    /**
+     * Returns list of posts by given page number.
+     *
+     * @param $page
+     *
+     * @return array
+     */
+    public function getPagedList($postId, $page)
+    {
+        $dql = '
+            SELECT c FROM AppBundle:Comment c
+            INNER JOIN AppBundle:Post p
+            WHERE p.id = :id
+        ';
+        $query = $this->getEntityManager()->createQuery($dql)
+            ->setParameter('id', $postId);
+        $query->setFirstResult($page * self::COUNT_PER_PAGE - self::COUNT_PER_PAGE);
+        $query->setMaxResults(self::COUNT_PER_PAGE);
+
+        /** @var Comment[] $comments */
+        $comments = $query->getResult();
+        $list = [];
+
+        foreach ($comments as $comment) {
+            $list[] = [
+                'id' => $comment->getId(),
+                'content' => $comment->getContent(),
+                'created_at' => $comment->getCreatedAt()->format(DATE_ISO8601),
+                'author' => $comment->getAuthor()->getName(),
+            ];
+        }
+
+        return $list;
+    }
 }

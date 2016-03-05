@@ -16,7 +16,6 @@ class ReactionType extends AbstractType
     {
         $builder
             ->add('type')
-            ->add('user')
             ->add('post')
         ;
     }

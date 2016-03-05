@@ -1,14 +1,5 @@
 <?php
 
-/*
- * This file is part of the ONGR package.
- *
- * (c) NFQ Technologies UAB <info@nfq.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Post;
@@ -31,8 +22,9 @@ class PostController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            // TODO: assign user
-            $post->setCreatedAt(new \DateTime());
+            $post
+                ->setAuthor($this->getUser())
+                ->setCreatedAt(new \DateTime());
 
             $this->getDoctrine()->getManager()->persist($post);
             $this->getDoctrine()->getManager()->flush();

@@ -25,7 +25,9 @@ class CommentsController extends Controller
             // TODO: return errors list
             return new JsonResponse(['errors' => true]);
         }
-        $comment->setCreatedAt(new \DateTime());
+        $comment
+            ->setAuthor($this->getUser())
+            ->setCreatedAt(new \DateTime());
 
         $objectManager = $this->getDoctrine()->getManager();
         $objectManager->persist($comment);

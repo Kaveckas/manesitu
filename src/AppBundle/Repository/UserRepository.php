@@ -10,4 +10,22 @@ namespace AppBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @param $token
+     * @return mixed
+     */
+    public function findByAccessToken($token)
+    {
+        $dql = '
+            SELECT u
+            FROM AppBundle:User u
+            INNER JOIN u.accessTokens a
+            WHERE a.token = :token
+        ';
+
+        $query = $this->getEntityManager()->createQuery($dql);
+        $query->setParameter('token', $token);
+
+        return $query->getOneOrNullResult();
+    }
 }

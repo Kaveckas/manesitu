@@ -5,17 +5,13 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Reaction
+ * AccessToken
  *
- * @ORM\Table(name="reaction")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\ReactionRepository")
+ * @ORM\Table(name="access_token")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\AccessTokenRepository")
  */
-class Reaction
+class AccessToken
 {
-    const TYPE_HUG = 'hug';
-    const TYPE_FEEL_SAME = 'feel_same';
-    const TYPE_SUPPORT = 'support';
-
     /**
      * @var int
      *
@@ -28,9 +24,9 @@ class Reaction
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=255)
+     * @ORM\Column(name="token", type="string", length=255, unique=true)
      */
-    private $type;
+    private $token;
 
     /**
      * @var User
@@ -39,14 +35,6 @@ class Reaction
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
-
-    /**
-     * @var User
-     *
-     * @ORM\ManyToOne(targetEntity="Post")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $post;
 
     /**
      * @var \DateTime
@@ -67,27 +55,27 @@ class Reaction
     }
 
     /**
-     * Set type
+     * Set token
      *
-     * @param string $type
+     * @param string $token
      *
-     * @return Reaction
+     * @return AccessToken
      */
-    public function setType($type)
+    public function setToken($token)
     {
-        $this->type = $type;
+        $this->token = $token;
 
         return $this;
     }
 
     /**
-     * Get type
+     * Get token
      *
      * @return string
      */
-    public function getType()
+    public function getToken()
     {
-        return $this->type;
+        return $this->token;
     }
 
     /**
@@ -95,7 +83,7 @@ class Reaction
      *
      * @param User $user
      *
-     * @return Comment
+     * @return AccessToken
      */
     public function setUser(User $user = null)
     {
@@ -115,35 +103,11 @@ class Reaction
     }
 
     /**
-     * Set post
-     *
-     * @param Post $post
-     *
-     * @return Reaction
-     */
-    public function setPost(Post $post)
-    {
-        $this->post = $post;
-
-        return $this;
-    }
-
-    /**
-     * Get post
-     *
-     * @return User
-     */
-    public function getPost()
-    {
-        return $this->post;
-    }
-
-    /**
      * Set createdAt
      *
      * @param \DateTime $createdAt
      *
-     * @return Reaction
+     * @return AccessToken
      */
     public function setCreatedAt($createdAt)
     {

@@ -6,12 +6,21 @@ security:
     providers:
         in_memory:
             memory: ~
+        app_user_provider:
+            id: app.user_provider
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+
+        secured_area:
+            pattern: ^/(post|comment|reaction)
+            stateless: true
+            simple_preauth:
+                authenticator: app.authenticator
+            provider: app_user_provider
 
         main:
             anonymous: ~

@@ -1,14 +1,5 @@
 <?php
 
-/*
- * This file is part of the ONGR package.
- *
- * (c) NFQ Technologies UAB <info@nfq.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Reaction;
@@ -31,7 +22,9 @@ class ReactionController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $reaction->setCreatedAt(new \DateTime());
+            $reaction
+                ->setUser($this->getUser())
+                ->setCreatedAt(new \DateTime());
 
             $this->getDoctrine()->getManager()->persist($reaction);
             $this->getDoctrine()->getManager()->flush();

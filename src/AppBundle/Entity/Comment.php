@@ -39,6 +39,7 @@ class Comment
      * @var User
      *
      * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $author;
 
@@ -46,6 +47,7 @@ class Comment
      * @var User
      *
      * @ORM\ManyToOne(targetEntity="Post", inversedBy="comments")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $post;
 

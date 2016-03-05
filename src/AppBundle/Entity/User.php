@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
@@ -12,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var int
@@ -57,6 +58,13 @@ class User
      * @ORM\OneToMany(targetEntity="Post", mappedBy="author")
      */
     private $posts;
+
+    /**
+     * @var Collection|AccessToken[]
+     *
+     * @ORM\OneToMany(targetEntity="AccessToken", mappedBy="user")
+     */
+    private $accessTokens;
 
     /**
      * Constructor.
@@ -202,6 +210,68 @@ class User
         $this->posts->removeElement($post);
 
         return $this;
+    }
+
+    /**
+     * @return Collection|AccessToken[]
+     */
+    public function getAccessToken()
+    {
+        return $this->accessTokens;
+    }
+
+    /**
+     * @param AccessToken $token
+     *
+     * @return $this
+     */
+    public function addAccessToken(AccessToken $token)
+    {
+        $this->accessTokens[] = $token;
+
+        return $this;
+    }
+
+    /**
+     * @param AccessToken $accessToken
+     *
+     * @return $this
+     */
+    public function removeAccessToken(AccessToken $accessToken)
+    {
+        $this->accessTokens->removeElement($accessToken);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getRoles()
+    {
+        return ['ROLE_USER'];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSalt()
+    {
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUsername()
+    {
+        return $this->getEmail();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function eraseCredentials()
+    {
     }
 }
 

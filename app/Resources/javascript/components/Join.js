@@ -1,5 +1,6 @@
 import React from 'react';
 import  { Link } from 'react-router';
+import { ReactionList } from './ReactionList.js';
 import './../../styles/join.css';
 
 /**
@@ -21,7 +22,14 @@ export const Join = () => {
                 </button>
             </div>
             <div className="col-xs-12">
-                <h2>Jaučiuosi...</h2>
+                <h2 className="reaction-header">Jaučiuosi...</h2>
+            </div>
+            <div className="col-xs-12">
+                <ReactionList />
+            </div>
+            <div className="col-xs-12 reaction-form">
+                <textarea className="reaction-inp" type="text" placeholder="Kas nutiko?"></textarea>
+                <button className="reaction-submit">Parašyk</button>
             </div>
         </div>
     );

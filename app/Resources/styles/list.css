@@ -1,0 +1,13 @@
+.post-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.post-list-item {
+    background: #f6f6f6;
+}
+
+.post-list-item:nth-child(odd) {
+    background: #ccc;
+}

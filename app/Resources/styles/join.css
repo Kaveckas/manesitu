@@ -6,3 +6,80 @@
 .join-selected {
     font-weight: 500;
 }
+
+.reaction-header {
+    margin-top: 200px;
+    margin-bottom: 30px;
+}
+
+.reaction-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.reaction-item {
+    float: left;
+    margin-right: 30px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.reaction-icon {
+    margin-bottom: 15px;
+    width: 64px;
+    height: 64px;
+    display: block;
+}
+
+.reaction-form {
+    margin-top: 50px;
+    padding-top: 30px;
+    padding-bottom: 40px;
+    background: #f6f6f6;
+}
+
+.reaction-inp {
+    min-height: 100px;
+    width: 100%;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    display: block;
+    border: 0;
+    background: transparent;
+    color: black;
+    line-height: 1.7;
+    outline: none;
+}
+
+.reaction-submit {
+    width: 100%;
+    display: block;
+    background: #F45921;
+    padding: 15px;
+    text-align: center;
+    border: 0;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 500;
+    outline: none;
+}
+
+.reaction-inp::-webkit-input-placeholder {
+    color: black;
+}
+
+.reaction-inp:-moz-placeholder { /* Firefox 18- */
+    color: black;
+}
+
+.reaction-inp::-moz-placeholder {  /* Firefox 19+ */
+    color: black;
+}
+
+.reaction-inp:-ms-input-placeholder {
+    color: black;
+}

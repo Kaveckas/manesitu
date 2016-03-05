@@ -2,6 +2,6 @@ body {
     font-family: 'Ubuntu', sans-serif;
 }
 
-.container {
+.container-fluid {
     margin-top: 40px;
 }

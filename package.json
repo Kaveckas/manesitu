@@ -1,0 +1,22 @@
+{
+  "name": "manesitu",
+  "version": "1.0.0",
+  "description": "manesitu ========",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kaveckas/manesitu.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kaveckas/manesitu/issues"
+  },
+  "homepage": "https://github.com/Kaveckas/manesitu#readme"
+}

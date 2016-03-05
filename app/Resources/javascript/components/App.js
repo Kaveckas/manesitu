@@ -7,7 +7,7 @@ export default class App extends React.Component {
      */
     render() {
         return (
-            <div>{this.props.children}</div>
+            <div className="col-md-6 col-md-offset-3">{this.props.children}</div>
         );
     }
 }

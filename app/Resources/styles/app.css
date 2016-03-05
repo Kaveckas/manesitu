@@ -2,39 +2,6 @@ body {
     font-family: 'Ubuntu', sans-serif;
 }
 
-.title {
-    margin-bottom: 150px;
-    font-size: 50px;
-    font-weight: 400;
-}
-
-.menu {
-    margin: 0 0 30px 0;
-    padding: 0;
-    list-style: none;
-}
-
-.menu-item:first-child {
-    border-bottom: 1px solid #979797;
-}
-
-.menu-item a {
-    padding: 15px 0;
-    display: block;
-    color: black;
-    font-size: 25px;
-    font-weight: 500;
-    text-decoration: none;
-}
-
-.browse {
-    color: black;
-    font-size: 18px;
-    text-align: center;
-    display: block;
-}
-
-.browse:hover {
-    color: black;
-    text-decoration: none;
+.container {
+    margin-top: 40px;
 }

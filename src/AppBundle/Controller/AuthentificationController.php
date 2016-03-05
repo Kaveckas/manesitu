@@ -67,49 +67,21 @@ class AuthentificationController extends Controller
                 'error_msg' => 'data not provided',
             ]);
         }
-        $userArray = $request->get('user');
-        if (!isset($userArray['email'])) {
-            return new JsonResponse([
-                'response' => 'error',
-                'error_msg' => 'email not provided',
-            ]);
-        }
-        $email = $userArray['email'];
-        if (!$email || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            return new JsonResponse([
-                'response' => 'error',
-                'error_msg' => 'email not valid',
-            ]);
-        }
-        if (!isset($userArray['password'])) {
-            return new JsonResponse([
-                'response' => 'error',
-                'error_msg' => 'password not provided',
-            ]);
-        }
-        $password = $userArray['password'];
-        if (strlen($password) < 5) {
-            return new JsonResponse([
-                'response' => 'error',
-                'error_msg' => 'password too short',
-            ]);
-        }
         $doctrine = $this->getDoctrine();
         $repository = $doctrine->getRepository('AppBundle:User');
-        if ($repository->findOneBy(['email' => $email])) {
+        if ($repository->findOneBy(['email' => $user->getEmail()])) {
             return new JsonResponse([
                 'response' => 'error',
                 'error_msg' => 'email taken',
             ]);
         }
-        $user->setEmail($email)
-            ->setPassword($password)
-            ->setCreatedAt(new \DateTime());
+        $user->setCreatedAt(new \DateTime());
         $em = $doctrine->getManager();
         $em->persist($user);
         $em->flush();
         return new JsonResponse([
             'response' => 'success',
+            'data' => $user->getId(),
         ]);
     }
 }

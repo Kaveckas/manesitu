@@ -27,7 +27,7 @@ class PostController extends Controller
     public function addPostAction(Request $request)
     {
         $post = new Post();
-        $form = $this->createForm(new PostType(), $post);
+        $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
 
         if ($form->isValid()) {

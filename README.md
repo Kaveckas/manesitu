@@ -4,6 +4,7 @@ manesitu
 ## Back-end Setup
 
 ```bash
+composer install
 bin/console doctrine:schema:create
 bin/console doctrine:fixtures:load
 ```

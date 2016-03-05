@@ -1,0 +1,8 @@
+.join {
+    background: transparent;
+    border: 0;
+}
+
+.join-selected {
+    font-weight: 500;
+}

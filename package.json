@@ -21,6 +21,8 @@
   },
   "homepage": "https://github.com/Kaveckas/manesitu#readme",
   "dependencies": {
+    "es6-promise": "^3.1.2",
+    "isomorphic-fetch": "^2.2.1",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
     "react-router": "^2.0.0"
@@ -32,6 +34,7 @@
     "babel-preset-react": "^6.5.0",
     "css-loader": "^0.23.1",
     "style-loader": "^0.13.0",
+    "svg-inline-loader": "^0.4.1",
     "webpack": "^1.12.14"
   }
 }

@@ -52,12 +52,8 @@ class PostController extends Controller
         $repository = $this->getDoctrine()->getRepository(Post::class);
         $posts = $repository->getPagedList($page);
 
-        $res =  new JsonResponse([
+        return new JsonResponse([
             'posts' => $posts,
         ]);
-
-        $res->setEncodingOptions(JSON_PRETTY_PRINT | $res->getEncodingOptions());
-
-        return $res;
     }
 }

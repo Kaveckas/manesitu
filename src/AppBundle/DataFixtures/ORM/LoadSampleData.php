@@ -13,6 +13,7 @@ namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\Comment;
 use AppBundle\Entity\Post;
+use AppBundle\Entity\Reaction;
 use AppBundle\Entity\User;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -50,6 +51,22 @@ class LoadSampleData implements FixtureInterface
             ->setPost($post1)
             ->setCreatedAt(new \DateTime());
         $manager->persist($comment1);
+
+        $reaction1 = new Reaction();
+        $reaction1
+            ->setType(Reaction::TYPE_HUG)
+            ->setPost($post1)
+            ->setUser($userTomas)
+            ->setCreatedAt(new \DateTime());
+        $manager->persist($reaction1);
+
+        $reaction2 = new Reaction();
+        $reaction2
+            ->setType(Reaction::TYPE_SUPPORT)
+            ->setPost($post1)
+            ->setUser($userTomas)
+            ->setCreatedAt(new \DateTime());
+        $manager->persist($reaction2);
 
         $manager->flush();
     }

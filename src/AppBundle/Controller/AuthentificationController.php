@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\AccessToken;
 use AppBundle\Entity\User;
 use AppBundle\Form\UserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -30,21 +31,30 @@ class AuthentificationController extends Controller
         }
         $repository = $this->getDoctrine()
             ->getRepository('AppBundle:User');
-        $user = $repository->findOneBy(['email' => $email]);
+        $user = $repository->findOneBy([
+            'email' => $email,
+            'password' => $password,
+        ]);
         if (!$user) {
             return new JsonResponse([
                 'response' => 'error',
-                'error_msg' => 'User nof found',
+                'error_msg' => 'User not found',
             ]);
         }
-        if ($user->getPassword() !== $password) {
-            return new JsonResponse([
-                'response' => 'error',
-                'error_msg' => 'Wrong password',
-            ]);
-        };
+
+        // Generate token
+        $token = new AccessToken();
+        $token
+            ->setToken(md5(uniqid() . $password))
+            ->setUser($user)
+            ->setCreatedAt(new \DateTime());
+
+        $this->getDoctrine()->getManager()->persist($token);
+        $this->getDoctrine()->getManager()->flush();
+
         return new JsonResponse([
             'response' => 'success',
+            'token' => $token->getToken(),
         ]);
     }
 

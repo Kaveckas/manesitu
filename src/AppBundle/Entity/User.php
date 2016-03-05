@@ -72,6 +72,7 @@ class User implements UserInterface
     public function __construct()
     {
         $this->posts = new ArrayCollection();
+        $this->accessTokens = new ArrayCollection();
     }
 
     /**

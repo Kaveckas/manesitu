@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -49,6 +51,20 @@ class User
      */
     private $createdAt;
 
+    /**
+     * @var Collection|Post[]
+     *
+     * @ORM\OneToMany(targetEntity="Post", mappedBy="author")
+     */
+    private $posts;
+
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        $this->posts = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -154,6 +170,38 @@ class User
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+
+    /**
+     * @return Collection|Post[]
+     */
+    public function getPosts()
+    {
+        return $this->posts;
+    }
+
+    /**
+     * @param Post $post
+     *
+     * @return $this
+     */
+    public function addPost(Post $post)
+    {
+        $this->posts[] = $post;
+
+        return $this;
+    }
+
+    /**
+     * @param Post $post
+     *
+     * @return $this
+     */
+    public function removePost(Post $post)
+    {
+        $this->posts->removeElement($post);
+
+        return $this;
     }
 }
 

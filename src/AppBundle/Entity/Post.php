@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -24,9 +26,9 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="content", type="text")
      */
-    private $description;
+    private $content;
 
     /**
      * @var User
@@ -42,6 +44,20 @@ class Post
      */
     private $createdAt;
 
+    /**
+     * @var Collection|Comment[]
+     *
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="post")
+     */
+    private $comments;
+
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -54,37 +70,37 @@ class Post
     }
 
     /**
-     * Set description
+     * Set content
      *
-     * @param string $description
+     * @param string $content
      *
      * @return Post
      */
-    public function setDescription($description)
+    public function setContent($content)
     {
-        $this->description = $description;
+        $this->content = $content;
 
         return $this;
     }
 
     /**
-     * Get description
+     * Get content
      *
      * @return string
      */
-    public function getDescription()
+    public function getContent()
     {
-        return $this->description;
+        return $this->content;
     }
 
     /**
      * Set author
      *
-     * @param string $author
+     * @param User $author
      *
      * @return Post
      */
-    public function setAuthor($author)
+    public function setAuthor(User $author)
     {
         $this->author = $author;
 
@@ -94,7 +110,7 @@ class Post
     /**
      * Get author
      *
-     * @return string
+     * @return User
      */
     public function getAuthor()
     {
@@ -123,6 +139,38 @@ class Post
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+
+    /**
+     * @return Collection|Comment[]
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * @param Comment $comment
+     *
+     * @return Post
+     */
+    public function addComment(Comment $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * @param Comment $comment
+     *
+     * @return Post
+     */
+    public function removeComment(Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+
+        return $this;
     }
 }
 

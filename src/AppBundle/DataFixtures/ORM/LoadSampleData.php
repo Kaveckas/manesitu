@@ -11,6 +11,7 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
+use AppBundle\Entity\AccessToken;
 use AppBundle\Entity\Comment;
 use AppBundle\Entity\Post;
 use AppBundle\Entity\Reaction;
@@ -69,6 +70,13 @@ class LoadSampleData implements FixtureInterface
             ->setUser($userTomas)
             ->setCreatedAt(new \DateTime());
         $manager->persist($reaction2);
+
+        $accessToken1 = new AccessToken();
+        $accessToken1
+            ->setToken('abc')
+            ->setUser($userTomas)
+            ->setCreatedAt(new \DateTime());
+        $manager->persist($accessToken1);
 
         $manager->flush();
     }

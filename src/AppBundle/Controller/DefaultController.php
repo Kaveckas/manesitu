@@ -20,40 +20,4 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.root_dir') . '/..'),
         ]);
     }
-
-    /**
-     * @param Request $request
-     * @return JsonResponse
-     * @Route("/login")
-     * @Method("POST")
-     */
-    public function loginAction(Request $request)
-    {
-        $email = $request->get('email');
-        $password = $request->get('password');
-        if (!$email) {
-            return new JsonResponse([
-                'response' => 'error',
-                'error_msg' => 'email not provided',
-            ]);
-        }
-        $repository = $this->getDoctrine()
-            ->getRepository('AppBundle:User');
-        $user = $repository->findOneBy(['email' => $email]);
-        if (!$user) {
-            return new JsonResponse([
-                'response' => 'error',
-                'error_msg' => 'User nof found',
-            ]);
-        }
-        if ($user->getPassword() !== $password) {
-            return new JsonResponse([
-                'response' => 'error',
-                'error_msg' => 'Wrong password',
-            ]);
-        };
-        return new JsonResponse([
-            'response' => 'success',
-        ]);
-    }
 }

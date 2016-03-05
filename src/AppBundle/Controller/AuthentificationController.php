@@ -84,4 +84,34 @@ class AuthentificationController extends Controller
             'data' => $user->getId(),
         ]);
     }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     * @Route("/register-anonymously")
+     * @Method("POST")
+     */
+    public function registerAnonymouslyAction(Request $request)
+    {
+        $user = new User();
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+
+        // @TODO: validators
+        if (!$form->isValid()) {
+            return new JsonResponse([
+                'response' => 'error',
+                'error_msg' => 'data not provided',
+            ]);
+        }
+        $doctrine = $this->getDoctrine();
+        $user->setCreatedAt(new \DateTime());
+        $em = $doctrine->getManager();
+        $em->persist($user);
+        $em->flush();
+        return new JsonResponse([
+            'response' => 'success',
+            'data' => $user->getId(),
+        ]);
+    }
 }

@@ -24,7 +24,13 @@ export class PostList extends React.Component {
     }
 
     componentWillMount() {
-        fetch(`${API}posts/1`)
+        fetch(`${API}posts/1`,
+            {
+                method: 'GET',
+                headers: {
+                    'Access-Token': 'abc'
+                }
+            })
             .then((response) => {
                 if (response.status >= 400) {
                     throw new Error(response);

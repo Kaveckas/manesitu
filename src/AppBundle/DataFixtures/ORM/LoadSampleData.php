@@ -34,6 +34,7 @@ class LoadSampleData implements FixtureInterface
         $post1
             ->setContent('Sample post 1')
             ->setAuthor($userTomas)
+            ->setEmotion('Sad')
             ->setCreatedAt(new \DateTime());
         $manager->persist($post1);
 
@@ -41,6 +42,7 @@ class LoadSampleData implements FixtureInterface
         $post2
             ->setContent('Sample post 2')
             ->setAuthor($userTomas)
+            ->setEmotion('Angry')
             ->setCreatedAt(new \DateTime());
         $manager->persist($post2);
 

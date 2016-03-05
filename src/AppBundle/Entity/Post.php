@@ -52,6 +52,13 @@ class Post
     private $comments;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="emotion", type="text")
+     */
+    private $emotion;
+
+    /**
      * Constructor.
      */
     public function __construct()
@@ -171,6 +178,30 @@ class Post
         $this->comments->removeElement($comment);
 
         return $this;
+    }
+
+    /**
+     * Set emotion
+     *
+     * @param string $emotion
+     *
+     * @return Comment
+     */
+    public function setEmotion($emotion)
+    {
+        $this->emotion = $emotion;
+
+        return $this;
+    }
+
+    /**
+     * Get emotion
+     *
+     * @return string
+     */
+    public function getEmotion()
+    {
+        return $this->emotion;
     }
 }
 

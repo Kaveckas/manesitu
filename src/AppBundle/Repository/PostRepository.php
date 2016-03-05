@@ -42,6 +42,7 @@ class PostRepository extends EntityRepository
                 'content' => $post->getContent(),
                 'created_at' => $post->getCreatedAt()->format(DATE_ISO8601),
                 'author' => $post->getAuthor()->getName(),
+                'emotion' => $post->getEmotion(),
                 'comments' => $item['comment_count'],
             ];
         }

@@ -20,7 +20,7 @@ class CommentType extends AbstractType
             ->add('post')
         ;
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */

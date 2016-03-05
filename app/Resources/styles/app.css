@@ -1,3 +1,12 @@
+html, body, #app, .container-fluid, .app-wrapper {
+    height: 100%;
+}
+
 body {
     font-family: 'Ubuntu', sans-serif;
+    background-color: #fbfbfb;
+}
+
+.app-wrapper {
+    background: white;
 }

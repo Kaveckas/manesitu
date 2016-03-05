@@ -11,11 +11,7 @@ export const Home = () => {
     return (
         <div className="row">
             <div className="col-xs-12">
-                <h1 className="title">
-                    <span>Man</span><br/>
-                    <span>esi</span><br/>
-                    <span>tu</span>
-                </h1>
+                <h1 className="title">Man esi tu</h1>
                 <ul className="menu">
                     <li className="menu-item">
                         <Link to="/join">Man sunku</Link>
@@ -24,7 +20,7 @@ export const Home = () => {
                         <Link to="/">Aš noriu padėti</Link>
                     </li>
                 </ul>
-                <Link className="browse" to="/posts">Tik panaršysiu</Link>
+                <Link className="browse" to="/posts">Tik pabūsiu čia</Link>
             </div>
         </div>
     );

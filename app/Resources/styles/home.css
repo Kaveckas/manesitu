@@ -1,8 +1,8 @@
 .title {
-    margin-top: 40px;
-    margin-bottom: 150px;
+    margin: 140px 0 170px 0;
     font-size: 50px;
-    font-weight: 500;
+    font-weight: 400;
+    text-align: center;
 }
 
 .menu {
@@ -12,16 +12,21 @@
 }
 
 .menu-item:first-child {
-    border-bottom: 1px solid #979797;
+    margin-bottom: 10px;
 }
 
 .menu-item a {
-    padding: 15px 0;
+    padding: 13px 17px;
     display: block;
     color: black;
     font-size: 25px;
     font-weight: 500;
     text-decoration: none;
+    border: 1px solid #979797;
+    border-radius: 20px;
+    max-width: 280px;
+    margin: 0 auto;
+    text-align: left;
 }
 
 .browse {

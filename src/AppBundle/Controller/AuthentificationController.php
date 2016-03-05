@@ -75,7 +75,7 @@ class AuthentificationController extends Controller
             ]);
         }
         $email = $userArray['email'];
-        if (!$email || filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if (!$email || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return new JsonResponse([
                 'response' => 'error',
                 'error_msg' => 'email not valid',

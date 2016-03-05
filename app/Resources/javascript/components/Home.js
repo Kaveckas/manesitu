@@ -7,7 +7,7 @@ import './../../styles/home.css';
  * @returns {JSX}
  * @constructor
  */
-export const Home = () => {
+export const Home = (props) => {
     return (
         <div className="row">
             <div className="col-xs-12">

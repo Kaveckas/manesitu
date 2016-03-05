@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, hashHistory, IndexRoute } from 'react-router'
+import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 import App from './components/App.js';
 import { Join } from './components/Join.js';
 import { Home } from './components/Home.js';

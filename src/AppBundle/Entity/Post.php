@@ -26,9 +26,9 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="content", type="text")
      */
-    private $description;
+    private $content;
 
     /**
      * @var User
@@ -70,37 +70,37 @@ class Post
     }
 
     /**
-     * Set description
+     * Set content
      *
-     * @param string $description
+     * @param string $content
      *
      * @return Post
      */
-    public function setDescription($description)
+    public function setContent($content)
     {
-        $this->description = $description;
+        $this->content = $content;
 
         return $this;
     }
 
     /**
-     * Get description
+     * Get content
      *
      * @return string
      */
-    public function getDescription()
+    public function getContent()
     {
-        return $this->description;
+        return $this->content;
     }
 
     /**
      * Set author
      *
-     * @param string $author
+     * @param User $author
      *
      * @return Post
      */
-    public function setAuthor($author)
+    public function setAuthor(User $author)
     {
         $this->author = $author;
 
@@ -110,7 +110,7 @@ class Post
     /**
      * Get author
      *
-     * @return string
+     * @return User
      */
     public function getAuthor()
     {

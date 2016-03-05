@@ -35,6 +35,20 @@ class Comment
      */
     private $createdAt;
 
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="comments")
+     */
+    private $author;
+
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="Post", inversedBy="comments")
+     */
+    private $post;
+
 
     /**
      * Get id
@@ -92,6 +106,54 @@ class Comment
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+
+    /**
+     * Set author
+     *
+     * @param User $author
+     *
+     * @return Comment
+     */
+    public function setAuthor(User $author = null)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * Get author
+     *
+     * @return User
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * Set post
+     *
+     * @param Post $post
+     *
+     * @return Comment
+     */
+    public function setPost(Post $post)
+    {
+        $this->post = $post;
+
+        return $this;
+    }
+
+    /**
+     * Get post
+     *
+     * @return User
+     */
+    public function getPost()
+    {
+        return $this->post;
     }
 }
 

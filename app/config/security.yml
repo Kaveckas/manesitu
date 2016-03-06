@@ -16,7 +16,7 @@ security:
             security: false
 
         secured_area:
-            pattern: ^/(post|comment|reaction)
+            pattern: ^/(post|comment|reaction|message)
             stateless: true
             simple_preauth:
                 authenticator: app.authenticator

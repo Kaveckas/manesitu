@@ -15,7 +15,7 @@ class MessageController extends Controller
     /**
      * @param Request $request
      * @return JsonResponse
-     * @Route("/create-message", methods={"POST"})
+     * @Route("/message/create", methods={"POST"})
      */
     public function createMessageAction(Request $request)
     {

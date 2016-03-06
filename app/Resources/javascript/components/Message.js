@@ -20,7 +20,7 @@ export default class Message extends React.Component {
 
     onSubmit() {
         if (this.refs.message.value) {
-            fetch(`${API}create-message`,
+            fetch(`${API}message/create`,
                 {
                     method: 'POST',
                     headers: {

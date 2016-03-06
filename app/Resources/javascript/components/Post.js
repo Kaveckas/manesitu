@@ -19,6 +19,33 @@ export class Post extends React.Component {
         this.state = {
             post: null,
             comments: null
+        };
+
+        this.onSubmit = this.onSubmit.bind(this);
+    }
+
+    onSubmit() {
+        if (this.refs.message.value) {
+            fetch(`${API}comment/add`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Access-Token': 'abc',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        comment: {
+                            post: this.state.post.id,
+                            content: this.refs.message.value
+                        }
+                    })
+                })
+                .then((response) => {
+                    if (response.status >= 400) {
+                        throw new Error(response);
+                    }
+                    return response.json();
+                });
         }
     }
 
@@ -87,6 +114,10 @@ export class Post extends React.Component {
                             />
                         )}
                     </ul>
+                    <div className="col-xs-12 comment-form">
+                        <textarea ref="message" className="comment-inp" type="text"></textarea>
+                        <button onClick={this.onSubmit} className="reaction-submit">Paraðyk</button>
+                    </div>
                 </div>
             </div>
         );

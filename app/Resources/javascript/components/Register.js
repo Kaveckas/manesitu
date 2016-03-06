@@ -57,7 +57,7 @@ export default class Register extends React.Component {
                     </span>
                     <button className="register-submit" onClick={this.onRegister}>Registruotis</button>
                     <div className="already-registered">
-                        Hmm, jau kažkada registravaisi? <Link to="login">Priisjunk</Link>
+                        Hmm, jau kažkada registravaisi? <Link to="login">Prisijunk</Link>
                     </div>
                 </div>
             </div>

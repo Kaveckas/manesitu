@@ -103,7 +103,7 @@ class AuthentificationController extends Controller
         }
         return new JsonResponse([
             'response' => 'success',
-            'data' => $accessToken->getToken(),
+            'token' => $accessToken->getToken(),
         ]);
     }
 
@@ -145,7 +145,7 @@ class AuthentificationController extends Controller
         }
         return new JsonResponse([
             'response' => 'success',
-            'data' => $user->getAccessToken(),
+            'token' => $user->getAccessToken(),
         ]);
     }
 }

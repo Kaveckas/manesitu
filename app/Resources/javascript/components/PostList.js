@@ -1,5 +1,5 @@
 import React from 'react';
-import { Post } from './Post.js';
+import { PostListItem } from './PostListItem.js';
 import { API } from './../config.js';
 import fetch from 'isomorphic-fetch';
 import es5promise from 'es6-promise';
@@ -44,15 +44,16 @@ export class PostList extends React.Component {
      */
     render() {
         if (!this.state.posts) {
-            return <p key={this.props.location.pathname}>Tuoj...</p>;
+            return <p>Tuoj...</p>;
         }
 
         return (
-            <div className="row" key={this.props.location.pathname}>
+            <div className="row">
                 <div className="col-xs-12">
                     <ul className="post-list">
                         {this.state.posts.posts.map(post =>
-                            <Post
+                            <PostListItem
+                                id={post.id}
                                 key={post.id}
                                 author={post.author}
                                 comments={post.comments}

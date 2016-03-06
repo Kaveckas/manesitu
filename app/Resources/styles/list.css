@@ -8,6 +8,11 @@
     background: #f6f6f6;
 }
 
+.post-list a {
+    color: black;
+    text-decoration: none !important;
+}
+
 .post-list-item:nth-child(even) {
     background: #ccc;
 }

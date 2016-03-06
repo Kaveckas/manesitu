@@ -9,7 +9,7 @@ import './../../styles/home.css';
  */
 export const Home = (props) => {
     return (
-        <div className="row">
+        <div className="row home-page">
             <div className="col-xs-12">
                 <h1 className="title">Man esi tu</h1>
                 <ul className="menu">

@@ -1,5 +1,5 @@
 import React from 'react';
-import  { Link } from 'react-router';
+import { Link } from 'react-router';
 import { API } from './../config.js';
 import es5promise from 'es6-promise';
 import fetch from 'isomorphic-fetch';
@@ -23,6 +23,15 @@ export class Join extends React.Component {
         };
 
         this.onSubmit = this.onSubmit.bind(this);
+        this.changeEmotion = this.changeEmotion.bind(this);
+    }
+
+    /**
+     *
+     * @param emotion
+     */
+    changeEmotion(emotion) {
+        this.setState({ emotion: emotion });
     }
 
     onSubmit() {
@@ -31,11 +40,12 @@ export class Join extends React.Component {
                 {
                     method: 'POST',
                     headers: {
-                        'Access-Token': 'abc'
+                        'Access-Token': 'abc',
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
                         post: {
-                            emotion: 'bad',
+                            emotion: this.state.emotion,
                             content: this.refs.message.value
                         }
                     })
@@ -62,15 +72,15 @@ export class Join extends React.Component {
                     </button>
                 </div>
                 <div className="col-xs-6">
-                    <button className="join create-account pull-right">
+                    <Link to="register" className="join create-account pull-right">
                         Prisistatyti
-                    </button>
+                    </Link>
                 </div>
                 <div className="col-xs-12">
                     <h2 className="reaction-header">Jaučiuosi...</h2>
                 </div>
                 <div className="col-xs-12">
-                    <ReactionList />
+                    <ReactionList changeEmotion={this.changeEmotion} />
                 </div>
                 <div className="col-xs-12 reaction-form">
                     <textarea ref="message" className="reaction-inp" type="text" placeholder="Kas nutiko?"></textarea>

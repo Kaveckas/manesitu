@@ -5,6 +5,8 @@
 .join {
     background: transparent;
     border: 0;
+    color: black !important;
+    text-decoration: none !important;
 }
 
 .join-selected {

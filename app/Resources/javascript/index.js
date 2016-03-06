@@ -6,6 +6,7 @@ import { Join } from './components/Join.js';
 import { Home } from './components/Home.js';
 import { PostList } from './components/PostList.js';
 import { Post } from './components/Post.js';
+import Register from './components/Register.js';
 
 import './../styles/app.css';
 
@@ -16,6 +17,7 @@ ReactDOM.render((
             <Route path="join" component={Join} />
             <Route path="posts" component={PostList} />
             <Route path="post/:postId" component={Post} />
+            <Route path="register" component={Register} />
         </Route>
     </Router>
 ), document.getElementById('app'));

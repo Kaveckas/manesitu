@@ -7,6 +7,7 @@ import { createIcon } from './../utils';
 import clock from './../../images/clock.svg';
 import bubble from './../../images/bubble.svg';
 import moment from 'moment';
+import './../../styles/post.css';
 
 export class Post extends React.Component {
     /**
@@ -94,7 +95,10 @@ export class Post extends React.Component {
                 return response.json();
             })
             .then((response) => {
-                // TODO: +1 reaction
+                var post = this.state.post;
+                post.reactions[type] = parseInt(post.reactions[type]) + 1;
+
+                this.setState({ post: post });
             });
     }
 
@@ -131,9 +135,9 @@ export class Post extends React.Component {
                         <p className="post-content">{this.state.post.content}</p>
                     </div>
                     <div>
-                        <span onClick={() => this.addReaction('hug')}>Apkabinu</span>
-                        <span onClick={() => this.addReaction('feel_same')}>Jaučiuosi taip pat</span>
-                        <span onClick={() => this.addReaction('support')}>Palaikau</span>
+                        <span onClick={() => this.addReaction('hug')}>Apkabinu<span className="reaction-count">{this.state.post.reactions.hug}</span></span>
+                        <span onClick={() => this.addReaction('feel_same')}>Jaučiuosi taip pat<span className="reaction-count">{this.state.post.reactions.feel_same}</span></span>
+                        <span onClick={() => this.addReaction('support')}>Palaikau<span className="reaction-count">{this.state.post.reactions.support}</span></span>
                     </div>
                     <ul className="comment-list">
                         {this.state.comments.map(comment =>

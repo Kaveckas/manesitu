@@ -4,7 +4,9 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Comment;
 use AppBundle\Entity\Post;
+use AppBundle\Entity\Reaction;
 use AppBundle\Form\CommentType;
+use AppBundle\Repository\ReactionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -47,12 +49,16 @@ class CommentsController extends Controller
         $postData = null;
 
         if ($page === 1) {
+            /** @var ReactionRepository $reactionRepository */
+            $reactionRepository = $this->getDoctrine()->getManager()->getRepository(Reaction::class);
+
             $postData = [
                 'id' => $post->getId(),
                 'content' => $post->getContent(),
                 'created_at' => $post->getCreatedAt()->format(DATE_ISO8601),
                 'author' => $post->getAuthor()->getName(),
                 'comments' => count($post->getComments()),
+                'reactions' => $reactionRepository->getCountsByPost($post->getId()),
             ];
         }
 

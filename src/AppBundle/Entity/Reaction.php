@@ -16,6 +16,12 @@ class Reaction
     const TYPE_FEEL_SAME = 'feel_same';
     const TYPE_SUPPORT = 'support';
 
+    const TYPES = [
+        self::TYPE_HUG,
+        self::TYPE_FEEL_SAME,
+        self::TYPE_SUPPORT,
+    ];
+
     /**
      * @var int
      *

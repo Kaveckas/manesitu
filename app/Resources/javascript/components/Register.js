@@ -4,6 +4,8 @@ import { API } from './../config.js';
 import es5promise from 'es6-promise';
 import fetch from 'isomorphic-fetch';
 import './../../styles/register.css';
+import { createIcon } from './../utils';
+import arrow from "./../../images/arrow.svg";
 
 export default class Register extends React.Component {
     constructor() {
@@ -45,6 +47,9 @@ export default class Register extends React.Component {
         return (
             <div className="row register-page">
                 <div className="col-xs-12">
+                    <Link to="join" className="go-back-btn">
+                        <span dangerouslySetInnerHTML={createIcon(arrow)}></span>
+                    </Link>
                     <h2 className="register-title">Užsiregistruok</h2>
                     <span className="register-name">
                         <input type="text" ref="name" placeholder="Vardas" />

@@ -57,3 +57,12 @@
     color: #4A90E2 !important;
     text-decoration: none !important;
 }
+
+.go-back-btn > span {
+    display: block;
+    margin: 27px 0;
+}
+
+.go-back-btn svg {
+    width: 20px;
+}

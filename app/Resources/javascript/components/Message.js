@@ -29,7 +29,7 @@ export default class Message extends React.Component {
                     },
                     body: JSON.stringify({
                         message: {
-                            receiver: this.props.params.id,
+                            receiver: this.props.params.userId,
                             content: this.refs.message.value
                         }
                     })

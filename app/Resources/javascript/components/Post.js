@@ -53,6 +53,7 @@ export class Post extends React.Component {
     componentWillMount() {
         let { postId } = this.props.params;
 
+
         fetch(`${API}post/${postId}/comments`,
             {
                 method: 'GET',
@@ -150,7 +151,7 @@ export class Post extends React.Component {
                 </ul>
                 <div className="col-xs-12 comment-form">
                     <textarea ref="message" className="comment-inp" type="text"></textarea>
-                    <button onClick={this.onSubmit} className="reaction-submit">Para�yk</button>
+                    <button onClick={this.onSubmit} className="reaction-submit">Parašyk</button>
                 </div>
             </div>
         );

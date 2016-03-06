@@ -31,7 +31,7 @@ class AccessToken
     /**
      * @var User
      *
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="accessTokens")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;

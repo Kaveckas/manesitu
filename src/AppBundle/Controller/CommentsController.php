@@ -3,8 +3,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Comment;
+use AppBundle\Entity\Post;
 use AppBundle\Form\CommentType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,15 +37,28 @@ class CommentsController extends Controller
     }
 
     /**
-     * @Route("/post/{postId}/comments/{page}", defaults={"page"=1})
+     * @Route("/post/{post}/comments/{page}", defaults={"page"=1})
      */
-    public function listAction($postId, $page)
+    public function listAction(Post $post, $page)
     {
         $repository = $this->getDoctrine()->getRepository(Comment::class);
-        $comments = $repository->getPagedList($postId, $page);
+        $comments = $repository->getPagedList($post->getId(), $page);
 
-        return new JsonResponse([
+        $postData = null;
+
+        if ($page === 1) {
+            $postData = [
+                'id' => $post->getId(),
+                'content' => $post->getContent(),
+                'created_at' => $post->getCreatedAt()->format(DATE_ISO8601),
+                'author' => $post->getAuthor()->getName(),
+                'comments_count' => count($post->getComments()),
+            ];
+        }
+
+        return new JsonResponse(array_filter([
+            'post' => $postData,
             'comments' => $comments,
-        ]);
+        ]));
     }
 }

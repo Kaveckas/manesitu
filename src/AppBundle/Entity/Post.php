@@ -47,7 +47,7 @@ class Post
     /**
      * @var Collection|Comment[]
      *
-     * @ORM\OneToMany(targetEntity="Comment", mappedBy="post")
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="post", fetch="EXTRA_LAZY")
      */
     private $comments;
 

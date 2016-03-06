@@ -9,6 +9,7 @@ import arrow from "./../../images/arrow.svg";
 import name from "./../../images/name.svg";
 import email from "./../../images/email.svg";
 import password from "./../../images/password.svg";
+import { browserHistory } from 'react-router';
 
 export default class Login extends React.Component {
     constructor() {
@@ -20,6 +21,12 @@ export default class Login extends React.Component {
         };
 
         this.onLogin = this.onLogin.bind(this);
+    }
+
+    componentDidMount() {
+        if (localStorage.authToken) {
+            browserHistory.push('/#/posts');
+        }
     }
 
     onLogin() {
@@ -40,6 +47,11 @@ export default class Login extends React.Component {
                         throw new Error(response);
                     }
                     return response.json();
+                })
+                .then((data) => {
+                    if (typeof(Storage) !== 'undefined') {
+                        localStorage.setItem('authToken', data.token);
+                    }
                 });
         }
     }

@@ -29,9 +29,11 @@ export default class Register extends React.Component {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        name: this.refs.name.value,
-                        email: this.refs.mail.value,
-                        password: this.refs.password.value
+                        user: {
+                            name: this.refs.name.value,
+                            email: this.refs.mail.value,
+                            password: this.refs.password.value
+                        }
                     })
                 })
                 .then((response) => {

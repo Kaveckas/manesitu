@@ -44,6 +44,9 @@ export default class Register extends React.Component {
                         throw new Error(response);
                     }
                     return response.json();
+                })
+                .then((data) => {
+                    console.log(token);
                 });
         }
     }

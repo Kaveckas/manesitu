@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, Redirect } from 'react-router';
 import { API } from './../config.js';
 import es5promise from 'es6-promise';
 import fetch from 'isomorphic-fetch';
@@ -17,13 +17,14 @@ export default class Login extends React.Component {
 
         this.state = {
             mail: null,
-            password: null
+            password: null,
+            logged: false
         };
 
         this.onLogin = this.onLogin.bind(this);
     }
 
-    componentDidMount() {
+    componentDidUpdate() {
         if (localStorage.authToken) {
             browserHistory.push('/#/posts');
         }
@@ -49,8 +50,9 @@ export default class Login extends React.Component {
                     return response.json();
                 })
                 .then((data) => {
-                    if (typeof(Storage) !== 'undefined') {
+                    if (data.response === 'success') {
                         localStorage.setItem('authToken', data.token);
+                        this.setState({ logged: true });
                     }
                 });
         }

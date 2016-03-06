@@ -18,13 +18,14 @@ export default class Register extends React.Component {
         this.state = {
             name: null,
             mail: null,
-            password: null
+            password: null,
+            logged: false
         };
 
         this.onRegister = this.onRegister.bind(this);
     }
 
-    componentDidMount() {
+    componentDidUpdate() {
         if (localStorage.authToken) {
             browserHistory.push('/#/posts');
         }
@@ -53,8 +54,9 @@ export default class Register extends React.Component {
                     return response.json();
                 })
                 .then((data) => {
-                    if (typeof(Storage) !== 'undefined') {
+                    if (data.response === 'success') {
                         localStorage.setItem('authToken', data.token);
+                        this.setState({ logged: true });
                     }
                 });
         }

@@ -10,4 +10,16 @@ namespace AppBundle\Repository;
  */
 class MessageRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    /**
+     * Returns list of posts by given page number.
+     *
+     * @param $receiverId
+     *
+     * @return array
+     */
+    public function getList($receiverId)
+    {
+        return [];
+    }
 }

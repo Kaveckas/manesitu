@@ -3,9 +3,10 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Message;
+use AppBundle\Entity\User;
 use AppBundle\Form\MessageType;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -35,5 +36,19 @@ class MessageController extends Controller
         $objectManager->flush();
 
         return new JsonResponse(['id' => $message->getId()]);
+    }
+
+    /**
+     * @param User $receiver
+     * @return JsonResponse
+     * @Route("/messages/{receiver}")
+     */
+    public function listAction(User $receiver)
+    {
+        $repository = $this->getDoctrine()->getRepository(Message::class);
+        $messages = $repository->getList($receiver->getId());
+        return new JsonResponse([
+            'messages' => $messages,
+        ]);
     }
 }

@@ -8,6 +8,7 @@ import { PostList } from './components/PostList.js';
 import { Post } from './components/Post.js';
 import Register from './components/Register.js';
 import Login from './components/Login.js';
+import Message from './components/Message.js';
 
 import './../styles/app.css';
 
@@ -20,6 +21,7 @@ ReactDOM.render((
             <Route path="post/:postId" component={Post} />
             <Route path="register" component={Register} />
             <Route path="login" component={Login} />
+            <Route path="message/:userId" component={Message} />
         </Route>
     </Router>
 ), document.getElementById('app'));

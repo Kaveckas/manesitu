@@ -12,7 +12,7 @@ import Susierzines from "./../../images/susierzines.svg";
  * @returns {JSX}
  * @constructor
  */
-export const ReactionList = (props) => {
+export const EmotionList = (props) => {
     return (
         <ul className="reaction-list clearfix">
             <li className="reaction-item" id="help" onClick={() => props.changeEmotion('help')}>

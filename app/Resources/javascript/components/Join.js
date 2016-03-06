@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import { API } from './../config.js';
 import es5promise from 'es6-promise';
 import fetch from 'isomorphic-fetch';
-import { ReactionList } from './ReactionList.js';
+import { EmotionList } from './EmotionList.js';
 import './../../styles/join.css';
 
 es5promise.polyfill();
@@ -80,7 +80,7 @@ export class Join extends React.Component {
                     <h2 className="reaction-header">Jaučiuosi...</h2>
                 </div>
                 <div className="col-xs-12">
-                    <ReactionList changeEmotion={this.changeEmotion} />
+                    <EmotionList changeEmotion={this.changeEmotion} />
                 </div>
                 <div className="col-xs-12 reaction-form">
                     <textarea ref="message" className="reaction-inp" type="text" placeholder="Kas nutiko?"></textarea>

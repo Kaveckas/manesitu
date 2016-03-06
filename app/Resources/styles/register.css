@@ -25,6 +25,7 @@
     padding: 15px 7px;
     border: 0;
     border-bottom: 1px solid #ddd;
+    padding-left: 35px;
 }
 
 .register-page input::-webkit-input-placeholder {
@@ -65,4 +66,19 @@
 
 .go-back-btn svg {
     width: 20px;
+}
+
+.register-field {
+    position: relative;
+}
+
+.register-icon {
+    position: absolute;
+    top: 16px;
+    left: 4px;
+    z-index: 10;
+}
+
+.register-icon svg {
+    width: 18px;
 }

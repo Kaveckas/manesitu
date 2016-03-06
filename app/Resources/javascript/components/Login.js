@@ -10,33 +10,29 @@ import name from "./../../images/name.svg";
 import email from "./../../images/email.svg";
 import password from "./../../images/password.svg";
 
-export default class Register extends React.Component {
+export default class Login extends React.Component {
     constructor() {
         super();
 
         this.state = {
-            name: null,
             mail: null,
             password: null
         };
 
-        this.onRegister = this.onRegister.bind(this);
+        this.onLogin = this.onLogin.bind(this);
     }
 
-    onRegister() {
-        if (this.refs.name.value && this.refs.mail.value && this.refs.password.value) {
-            fetch(`${API}register`,
+    onLogin() {
+        if (this.refs.mail.value && this.refs.password.value) {
+            fetch(`${API}login`,
                 {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        user: {
-                            name: this.refs.name.value,
-                            email: this.refs.mail.value,
-                            password: this.refs.password.value
-                        }
+                        email: this.refs.mail.value,
+                        password: this.refs.password.value
                     })
                 })
                 .then((response) => {
@@ -55,11 +51,7 @@ export default class Register extends React.Component {
                     <Link to="join" className="go-back-btn">
                         <span dangerouslySetInnerHTML={createIcon(arrow)}></span>
                     </Link>
-                    <h2 className="register-title">Užsiregistruok</h2>
-                    <span className="register-name register-field">
-                        <span className="register-icon" dangerouslySetInnerHTML={createIcon(name)}></span>
-                        <input type="text" ref="name" placeholder="Vardas" />
-                    </span>
+                    <h2 className="register-title">Prisijunk</h2>
                     <span className="register-mail register-field">
                         <span className="register-icon" dangerouslySetInnerHTML={createIcon(email)}></span>
                         <input type="text" ref="mail" placeholder="El. paštas" />
@@ -68,10 +60,7 @@ export default class Register extends React.Component {
                         <span className="register-icon" dangerouslySetInnerHTML={createIcon(password)}></span>
                         <input type="password" ref="password" placeholder="Slaptažodis" />
                     </span>
-                    <button className="register-submit" onClick={this.onRegister}>Registruotis</button>
-                    <div className="already-registered">
-                        Hmm, jau kažkada registravaisi? <Link to="login">Prisijunk</Link>
-                    </div>
+                    <button className="register-submit" onClick={this.onLogin}>Prisijungti</button>
                 </div>
             </div>
         );

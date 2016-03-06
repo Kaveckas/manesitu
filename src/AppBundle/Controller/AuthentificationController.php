@@ -88,11 +88,8 @@ class AuthentificationController extends Controller
         $user->setCreatedAt(new \DateTime());
         $em = $doctrine->getManager();
         $em->persist($user);
-        $token = $this->container->get('security.token_storage')
-            ->getToken()
-            ->getSecret();
         $accessToken = new AccessToken();
-        $accessToken->setToken($token)
+        $accessToken->setToken(md5(uniqid() . $user->getPassword()))
             ->setUser($user)
             ->setCreatedAt(new \DateTime());
         $em->persist($accessToken);
@@ -133,11 +130,8 @@ class AuthentificationController extends Controller
         $user->setCreatedAt(new \DateTime());
         $em = $doctrine->getManager();
         $em->persist($user);
-        $token = $this->container->get('security.token_storage')
-            ->getToken()
-            ->getSecret();
         $accessToken = new AccessToken();
-        $accessToken->setToken($token)
+        $accessToken->setToken(md5(uniqid() . $user->getPassword()))
             ->setUser($user)
             ->setCreatedAt(new \DateTime());
         $em->persist($accessToken);

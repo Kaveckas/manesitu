@@ -17,19 +17,20 @@ class CommentRepository extends \Doctrine\ORM\EntityRepository
     /**
      * Returns list of posts by given page number.
      *
-     * @param $page
+     * @param int $post
+     * @param int $page
      *
      * @return array
      */
-    public function getPagedList($postId, $page)
+    public function getPagedList($post, $page)
     {
         $dql = '
-            SELECT c FROM AppBundle:Comment c
-            INNER JOIN AppBundle:Post p
-            WHERE p.id = :id
+            SELECT c
+            FROM AppBundle:Comment c
+            WHERE c.post = :post
         ';
         $query = $this->getEntityManager()->createQuery($dql)
-            ->setParameter('id', $postId);
+            ->setParameter('post', $post);
         $query->setFirstResult($page * self::COUNT_PER_PAGE - self::COUNT_PER_PAGE);
         $query->setMaxResults(self::COUNT_PER_PAGE);
 

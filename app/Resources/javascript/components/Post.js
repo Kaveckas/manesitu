@@ -113,31 +113,29 @@ export class Post extends React.Component {
 
         return (
             <div className="row">
-                <div className="col-xs-12">
-                    <div>
-                        <div className="list-item-info">
-                            <span className="post-author">{this.state.post.author}</span>
-                            <span className="post-comments pull-right">
-                                <span
-                                    className="post-icon"
-                                    dangerouslySetInnerHTML={createIcon(bubble)}
-                                ></span>
-                                {this.state.post.comments}
-                            </span>
-                            <span className="post-created pull-right">
-                                <span
-                                    className="post-icon"
-                                    dangerouslySetInnerHTML={createIcon(clock)}
-                                ></span>
-                                {moment(this.state.post.created_at, 'YYYYMMDD h:mm:ss').fromNow()}
-                            </span>
-                        </div>
-                        <p className="post-content">{this.state.post.content}</p>
+                <div className="post-header">
+                    <div className="list-item-info">
+                        <span className="post-author">{this.state.post.author}</span>
+                        <span className="post-comments pull-right">
+                            <span
+                                className="post-icon"
+                                dangerouslySetInnerHTML={createIcon(bubble)}
+                            ></span>
+                            <span className="post-info">{this.state.post.comments}</span>
+                        </span>
+                        <span className="post-created pull-right">
+                            <span
+                                className="post-icon"
+                                dangerouslySetInnerHTML={createIcon(clock)}
+                            ></span>
+                            <span className="post-info">{moment(this.state.post.created_at, 'YYYYMMDD h:mm:ss').fromNow()}</span>
+                        </span>
                     </div>
-                    <div>
-                        <span onClick={() => this.addReaction('hug')}>Apkabinu<span className="reaction-count">{this.state.post.reactions.hug}</span></span>
-                        <span onClick={() => this.addReaction('feel_same')}>Jaučiuosi taip pat<span className="reaction-count">{this.state.post.reactions.feel_same}</span></span>
-                        <span onClick={() => this.addReaction('support')}>Palaikau<span className="reaction-count">{this.state.post.reactions.support}</span></span>
+                    <p className="single-post-content">{this.state.post.content}</p>
+                    <div className="post-reactions">
+                        <span className="post-reaction" onClick={() => this.addReaction('hug')}>Apkabinu<span className="reaction-count">{this.state.post.reactions.hug}</span></span>
+                        <span className="post-reaction" onClick={() => this.addReaction('feel_same')}>Jaučiuosi taip pat<span className="reaction-count">{this.state.post.reactions.feel_same}</span></span>
+                        <span className="post-reaction" onClick={() => this.addReaction('support')}>Palaikau<span className="reaction-count">{this.state.post.reactions.support}</span></span>
                     </div>
                     <ul className="comment-list">
                         {this.state.comments.map(comment =>

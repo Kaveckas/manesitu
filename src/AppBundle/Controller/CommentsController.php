@@ -58,7 +58,7 @@ class CommentsController extends Controller
                 'created_at' => $post->getCreatedAt()->format(DATE_ISO8601),
                 'author' => $post->getAuthor()->getName(),
                 'comments' => count($post->getComments()),
-                'reactions' => $reactionRepository->getCountsByPost($post->getId()),
+                'reactions' => $reactionRepository->getCountsByPost($post->getId(), $this->getUser()->getId()),
             ];
         }
 

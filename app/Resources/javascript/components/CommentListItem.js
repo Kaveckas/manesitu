@@ -15,8 +15,8 @@ export const CommentListItem = (props) => {
         <li className="comment-list-item">
             <p className="comment-content">{props.content}</p>
             <div className="list-item-info">
-                <span className="comment-author">{props.author}</span>
-                <span className="comment-created pull-right">
+                <span className="comment-author">{props.author}, </span>
+                <span className="comment-created">
                     {moment(props.created_at, 'YYYYMMDD h:mm:ss').fromNow()}
                 </span>
             </div>

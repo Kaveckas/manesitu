@@ -96,7 +96,10 @@ export class Post extends React.Component {
             })
             .then((response) => {
                 var post = this.state.post;
-                post.reactions[type] = parseInt(post.reactions[type]) + 1;
+                post.reactions[type] = {
+                    count: parseInt(post.reactions[type].count) + 1,
+                    given: true
+                };
 
                 this.setState({ post: post });
             });
@@ -133,9 +136,9 @@ export class Post extends React.Component {
                     </div>
                     <p className="single-post-content">{this.state.post.content}</p>
                     <div className="post-reactions">
-                        <span className="post-reaction" onClick={() => this.addReaction('hug')}>Apkabinu<span className="reaction-count">{this.state.post.reactions.hug}</span></span>
-                        <span className="post-reaction" onClick={() => this.addReaction('feel_same')}>Jaučiuosi taip pat<span className="reaction-count">{this.state.post.reactions.feel_same}</span></span>
-                        <span className="post-reaction" onClick={() => this.addReaction('support')}>Palaikau<span className="reaction-count">{this.state.post.reactions.support}</span></span>
+                        <span className="post-reaction" onClick={() => this.addReaction('hug')}>Apkabinu<span className="reaction-count">{this.state.post.reactions.hug.count}</span></span>
+                        <span className="post-reaction" onClick={() => this.addReaction('feel_same')}>Jaučiuosi taip pat<span className="reaction-count">{this.state.post.reactions.feel_same.count}</span></span>
+                        <span className="post-reaction" onClick={() => this.addReaction('support')}>Palaikau<span className="reaction-count">{this.state.post.reactions.support.count}</span></span>
                     </div>
                 </div>
                 <ul className="comment-list">

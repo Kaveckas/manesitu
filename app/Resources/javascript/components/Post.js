@@ -3,6 +3,10 @@ import { API } from './../config.js';
 import fetch from 'isomorphic-fetch';
 import es5promise from 'es6-promise';
 import { CommentListItem } from './CommentListItem.js';
+import { createIcon } from './../utils';
+import clock from './../../images/clock.svg';
+import bubble from './../../images/bubble.svg';
+import moment from 'moment';
 
 export class Post extends React.Component {
     /**
@@ -52,7 +56,26 @@ export class Post extends React.Component {
         return (
             <div className="row">
                 <div className="col-xs-12">
-                    <div>{this.state.post.content}</div>
+                    <div>
+                        <div className="list-item-info">
+                            <span className="post-author">{this.state.post.author}</span>
+                            <span className="post-comments pull-right">
+                                <span
+                                    className="post-icon"
+                                    dangerouslySetInnerHTML={createIcon(bubble)}
+                                ></span>
+                                {this.state.post.comments}
+                            </span>
+                            <span className="post-created pull-right">
+                                <span
+                                    className="post-icon"
+                                    dangerouslySetInnerHTML={createIcon(clock)}
+                                ></span>
+                                {moment(this.state.post.created_at, 'YYYYMMDD h:mm:ss').fromNow()}
+                            </span>
+                        </div>
+                        <p className="post-content">{this.state.post.content}</p>
+                    </div>
                     <ul className="comment-list">
                         {this.state.comments.map(comment =>
                             <CommentListItem

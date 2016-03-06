@@ -4,17 +4,26 @@
     list-style: none;
 }
 
+.post-list-header {
+    border-bottom: 1px solid #DEDEDE;
+}
+
+.post-list-title {
+    position: absolute;
+    font-size: 18px;
+    margin: 23px auto;
+    width: 60px;
+    left: 0;
+    right: 0;
+}
+
 .post-list-item {
-    background: #f6f6f6;
+    border-bottom: 1px solid #DEDEDE;
 }
 
 .post-list a {
     color: black;
     text-decoration: none !important;
-}
-
-.post-list-item:nth-child(even) {
-    background: #ccc;
 }
 
 .post-content {

@@ -59,15 +59,6 @@
     text-decoration: none !important;
 }
 
-.go-back-btn > span {
-    display: block;
-    margin: 27px 0;
-}
-
-.go-back-btn svg {
-    width: 20px;
-}
-
 .register-field {
     position: relative;
 }

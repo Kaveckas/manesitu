@@ -152,7 +152,7 @@ export class Post extends React.Component {
                     </ul>
                     <div className="col-xs-12 comment-form">
                         <textarea ref="message" className="comment-inp" type="text"></textarea>
-                        <button onClick={this.onSubmit} className="reaction-submit">Paraðyk</button>
+                        <button onClick={this.onSubmit} className="reaction-submit">ParaÅ¡yk</button>
                     </div>
                 </div>
             </div>

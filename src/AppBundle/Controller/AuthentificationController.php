@@ -88,10 +88,25 @@ class AuthentificationController extends Controller
         $user->setCreatedAt(new \DateTime());
         $em = $doctrine->getManager();
         $em->persist($user);
-        $em->flush();
+        $token = $this->container->get('security.token_storage')
+            ->getToken()
+            ->getSecret();
+        $accessToken = new AccessToken();
+        $accessToken->setToken($token)
+            ->setUser($user)
+            ->setCreatedAt(new \DateTime());
+        $em->persist($accessToken);
+        try {
+            $em->flush();
+        } catch (\Exception $e) {
+            return new JsonResponse([
+                'response' => 'error',
+                'error_msg' => 'server error',
+            ]);
+        }
         return new JsonResponse([
             'response' => 'success',
-            'data' => $user->getId(),
+            'data' => $accessToken->getToken(),
         ]);
     }
 
@@ -118,10 +133,25 @@ class AuthentificationController extends Controller
         $user->setCreatedAt(new \DateTime());
         $em = $doctrine->getManager();
         $em->persist($user);
-        $em->flush();
+        $token = $this->container->get('security.token_storage')
+            ->getToken()
+            ->getSecret();
+        $accessToken = new AccessToken();
+        $accessToken->setToken($token)
+            ->setUser($user)
+            ->setCreatedAt(new \DateTime());
+        $em->persist($accessToken);
+        try {
+            $em->flush();
+        } catch (\Exception $e) {
+            return new JsonResponse([
+                'response' => 'error',
+                'error_msg' => 'server error',
+            ]);
+        }
         return new JsonResponse([
             'response' => 'success',
-            'data' => $user->getId(),
+            'data' => $user->getAccessToken(),
         ]);
     }
 }

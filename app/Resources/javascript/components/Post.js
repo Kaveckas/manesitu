@@ -71,6 +71,33 @@ export class Post extends React.Component {
             });
     }
 
+    addReaction(type) {
+
+        fetch(`${API}reaction/add`,
+            {
+                method: 'POST',
+                headers: {
+                    'Access-Token': 'abc',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    reaction: {
+                        post: this.state.post.id,
+                        type: type
+                    }
+                })
+            })
+            .then((response) => {
+                if (response.status >= 400) {
+                    throw new Error(response);
+                }
+                return response.json();
+            })
+            .then((response) => {
+                // TODO: +1 reaction
+            });
+    }
+
     /**
      *
      * @returns {JSX}
@@ -102,6 +129,11 @@ export class Post extends React.Component {
                             </span>
                         </div>
                         <p className="post-content">{this.state.post.content}</p>
+                    </div>
+                    <div>
+                        <span onClick={() => this.addReaction('hug')}>Apkabinu</span>
+                        <span onClick={() => this.addReaction('feel_same')}>Jaučiuosi taip pat</span>
+                        <span onClick={() => this.addReaction('support')}>Palaikau</span>
                     </div>
                     <ul className="comment-list">
                         {this.state.comments.map(comment =>

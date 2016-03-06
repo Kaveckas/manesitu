@@ -24,7 +24,7 @@ class Message
     /**
      * @var int
      *
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="messages")
+     * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(nullable=false)
      */
     private $sender;
@@ -32,7 +32,7 @@ class Message
     /**
      * @var int
      *
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="messages")
+     * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(nullable=false)
      */
     private $receiver;

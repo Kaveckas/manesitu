@@ -39,14 +39,15 @@ class MessageController extends Controller
     }
 
     /**
-     * @param User $receiver
+     * @param int $page
      * @return JsonResponse
-     * @Route("/messages/{receiver}")
+     * @Route("/messages/{page}", defaults={"page"=1})
      */
-    public function listAction(User $receiver)
+    public function listAction($page)
     {
         $repository = $this->getDoctrine()->getRepository(Message::class);
-        $messages = $repository->getList($receiver->getId());
+        $messages = $repository->getList($this->getUser()->getId(), $page);
+
         return new JsonResponse([
             'messages' => $messages,
         ]);

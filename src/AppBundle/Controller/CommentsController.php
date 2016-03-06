@@ -52,7 +52,7 @@ class CommentsController extends Controller
                 'content' => $post->getContent(),
                 'created_at' => $post->getCreatedAt()->format(DATE_ISO8601),
                 'author' => $post->getAuthor()->getName(),
-                'comments_count' => count($post->getComments()),
+                'comments' => count($post->getComments()),
             ];
         }
 
